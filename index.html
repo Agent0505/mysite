@@ -3,29 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Table</title>
+    <link rel="stylesheet" href="./css.css">
 </head>
 <body>
-    <script src="./script.js"></script>
-    <div style="width: 90%; position: absolute; left: 5%; top: 5%; border-radius: 10px; border-color: #BBB; background-color: #EEE; min-width: 1200px;">
+    <div id="message" class="message"></div>
+    <div class="container_main">
         <form>
             <span>
-                <input style="margin:20px; width: 60% ;" type="text" id="text"><input onclick="writeList(),clearText()" type="button" value="Добавить">
-                <button type="button" style="margin-left: 20px;" onClick="saveList()">Сохранить</button>
-                <button type="button" onClick="clearList()" style="margin-left: 5px">Очистить</button>
-                <select id="select-save-name" style="width: 100px; margin-left: 20px;">
+                <input class="text_input" type="text" id="text"><input onclick="writeList(),clearText()" type="button" value="Добавить">
+                <button type="button" class="save__btn" onClick="saveList()">Сохранить</button>
+                <button type="button" onClick="ASK('Удалить сохранение ?')" class="clear__btn">Удалить</button>
+                <!--<select id="select-save-name" style="width: 100px; margin-left: 20px;">
                     <option onClick="setName('First')">First</option>
                     <option onClick="setName('Second')">Second</option>
                     <option onClick="setName('Third')">Third</option>
                     <option onClick="setName('Forth')">Forth</option>
                     <option onClick="setName('List')">Old</option>
-                </select>
-                <button type="button" onClick="refresh()" style="margin: 0; padding: 0; line-height: 10px; position: relative; top: 5px;;"><img style="width: 24px; height: 24px;" src="https://www.kuchadrov.ru/uploads/posts/2011-11/1321276683_update.png"></button> 
+                </select>-->
+                <button type="button" onClick="loadList()" class="refresh__btn" title="Обновить"><img class="refresh__btn_img" src="https://www.kuchadrov.ru/uploads/posts/2011-11/1321276683_update.png"></button>
             </span>
         </form>
-        <div style="margin: 20px; border-radius: 5px; box-shadow: 0 0 5px #000, 4px 4px 9px #000; background:#E5E5E5; display: block; overflow: auto; max-height: 600px;">
-        <div style="padding-top:2px; " id="list"></div>
+        <div class="container_second">
+        <div id="list"></div>
         </div>
     </div>
-    
+    <div class="container_load">
+        <div>
+            <div class="cont__load_text">Выберите сохранение</div>
+            <div class="cont__load_contein">
+            <ul id="SAVES" class="cont__load_list">
+            </ul>
+            </div>
+            <div class="cont__load_text ">
+                <div class="load_btn_create" onclick="openCreateSave()">Создать сохранение</div>
+            </div>
+        </div>
+    </div>
+    <div id="createSave" class="container__back hidden">
+        <div class="cont__menu">
+            <div class="cont__text1">Введите название сохранения</div><div onclick="closeCreateSave()" class="cont__close">&times;</div>
+            <form>
+                <input id="SaveNameIn" class="cont__textareaCreateSave" type="text" placeholder="Название..." minlength="4" maxlength="34" required>
+            </form>
+            <div class="cont__btn btn_middle" onclick="createNewSave()"><span class="cont__btn_text">OK</span></div>
+        </div>
+    </div>
+    <div id="ask" class="ask hidden">
+        <div class="container__back">
+            <div class="cont__menu">
+                <span class="cont__text1">Подтверждение</span>
+                <span id="asking" class="cont__text1 cont__text2"></span>
+                <form>
+                    <div class="cont__btn btn_left" type="button" onclick="clearList(), closeASK()"><div class="cont__btn_text">Да</div></div>
+                    <div class="cont__btn btn_right" type="button" onclick="closeASK()"><div class="cont__btn_text">Нет</div></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
 </body>
 </html>
