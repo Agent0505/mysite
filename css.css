@@ -284,3 +284,6 @@ cont__load_btn_create {
 .showMessage {
     top: 30px;
 }
+.selected {
+    color: #2B2;
+}

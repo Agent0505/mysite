@@ -1,5 +1,6 @@
 "strict mode"
 let Name = "";
+let NameList = [];
 let List= [];
 let save = {};
 loadList();
@@ -89,17 +90,22 @@ function SaveNamesToHTML() {
     for (let key in save){
         Names.push(key);
     }
+    NameList = Names;
     document.getElementById("SAVES").innerHTML = writeSaveNames(Names);
 }
 function writeSaveNames(Names) {
     let htmlOut = "";
-    Names.forEach((element) => htmlOut+="<li onclick=\"setName('"+ element +"')\">" + element + "</li>");
+    Names.forEach((element,index) => htmlOut+="<li id='Name"+index+"' onclick=\"setColor('"+index+"'),setName('"+ element +"')\">" + element + "</li>");
     return htmlOut;
 }
 function setName(name) {
     Name = name;
     List = save[name];
     readList();
+}
+function setColor(ID) {
+    NameList.forEach((e,index)=>document.getElementById("Name"+index).classList.remove("selected"));
+    document.getElementById("Name"+ID).classList.add("selected");
 }
 function closeCreateSave() {
     document.getElementById("createSave").classList.add("hidden");
